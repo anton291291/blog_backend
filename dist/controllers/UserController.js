@@ -48,19 +48,13 @@ function () {
       }).then(function (user) {
         if (user) {
           return res.status(400).json({
-            email: 'Email already exists'
+            email: 'Email уже зарегистрирован'
           });
         } else {
-          var avatar = gravatar.url(req.body.email, {
-            s: '200',
-            r: 'pg',
-            d: 'mm'
-          });
           var newUser = new _User["default"]({
             name: req.body.name,
             email: req.body.email,
-            password: req.body.password,
-            avatar: avatar
+            password: req.body.password
           });
 
           _bcrypt["default"].genSalt(10, function (err, salt) {
@@ -96,7 +90,7 @@ function () {
         email: email
       }).then(function (user) {
         if (!user) {
-          errors.email = 'User not found';
+          errors.email = 'Пользователь не найден';
           return res.status(404).json(errors);
         }
 
@@ -106,7 +100,7 @@ function () {
               id: user.id
             };
 
-            _jsonwebtoken["default"].sign(payload, 'secret', {
+            _jsonwebtoken["default"].sign(payload, 'pomidorchik', {
               expiresIn: 3600
             }, function (err, token) {
               if (err) console.error('There is some error in token', err);else {
@@ -117,7 +111,7 @@ function () {
               }
             });
           } else {
-            errors.password = 'Incorrect Password';
+            errors.password = 'Некорректный пароль';
             return res.status(400).json(errors);
           }
         });
