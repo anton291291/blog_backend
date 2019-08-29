@@ -7,7 +7,7 @@ const ExtractJWT = require('passport-jwt').ExtractJwt;
 const opts = {};
 
 opts.jwtFromRequest = ExtractJWT.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = 'secret';
+opts.secretOrKey = 'pomidorchik';
 
 export default (passport) => {
     passport.use(new JWTStrategy(opts, (jwt_payload, done) => {

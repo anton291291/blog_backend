@@ -21,20 +21,14 @@ class UserController {
       }).then(user => {
           if(user) {
               return res.status(400).json({
-                  email: 'Email already exists'
+                  email: 'Email уже зарегистрирован'
               });
           }
           else {
-              const avatar = gravatar.url(req.body.email, {
-                  s: '200',
-                  r: 'pg',
-                  d: 'mm'
-              });
               const newUser = new User({
                   name: req.body.name,
                   email: req.body.email,
                   password: req.body.password,
-                  avatar
               });
 
               bcrypt.genSalt(10, (err, salt) => {
@@ -71,7 +65,7 @@ class UserController {
       User.findOne({email})
           .then(user => {
               if(!user) {
-                  errors.email = 'User not found'
+                  errors.email = 'Пользователь не найден'
                   return res.status(404).json(errors);
               }
               bcrypt.compare(password, user.password)
@@ -80,7 +74,7 @@ class UserController {
                               const payload = {
                                   id: user.id
                               }
-                              jwt.sign(payload, 'secret', {
+                              jwt.sign(payload, 'pomidorchik', {
                                   expiresIn: 3600
                               }, (err, token) => {
                                   if(err) console.error('There is some error in token', err);
@@ -93,7 +87,7 @@ class UserController {
                               });
                           }
                           else {
-                              errors.password = 'Incorrect Password';
+                              errors.password = 'Некорректный пароль';
                               return res.status(400).json(errors);
                           }
                       });
