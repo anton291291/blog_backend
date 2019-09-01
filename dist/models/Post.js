@@ -15,9 +15,15 @@ var PostSchema = new _mongoose.Schema({
   imageUrl: String
 }, {
   timestamps: true
+}, {
+  collection: 'PostSchema'
+});
+PostSchema.index({
+  text: 'text',
+  title: 'text'
 });
 
-var Post = _mongoose["default"].model("Post", PostSchema);
+var Post = _mongoose["default"].model('Post', PostSchema);
 
 var _default = Post;
 exports["default"] = _default;

@@ -1,4 +1,4 @@
-import express from "express";
+import express from 'express';
 import passport from 'passport';
 import UserController from '../../controllers/UserController';
 

@@ -28,8 +28,14 @@ class PostController {
     });
   };
 
-  read (req,res) {
-    PostModel.findOne({_id: req.params.id})
+  find (req,res) {
+    const query = req.params.query;
+
+    PostModel.find( {
+    $text: {
+        $search: query
+    }
+    })
     .then((post) => {
       if (!post) {
         res.json({error: "not found"});

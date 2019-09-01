@@ -15,7 +15,7 @@ var Post = new _PostController["default"]();
 
 var router = _express["default"].Router();
 
-router.get("/", Post.index).post("/", Post.create);
-router.get("/:id", Post.read)["delete"]("/:id", Post["delete"]).put(":id", Post.update);
+router.get("/", Post.index).get("/search/:query", Post.find).post("/", Post.create);
+router["delete"]("/:id", Post["delete"]).put(":id", Post.update);
 var _default = router;
 exports["default"] = _default;

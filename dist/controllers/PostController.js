@@ -49,10 +49,14 @@ function () {
       });
     }
   }, {
-    key: "read",
-    value: function read(req, res) {
-      _Post["default"].findOne({
-        _id: req.params.id
+    key: "find",
+    value: function find(req, res) {
+      var query = req.params.query;
+
+      _Post["default"].find({
+        $text: {
+          $search: query
+        }
       }).then(function (post) {
         if (!post) {
           res.json({

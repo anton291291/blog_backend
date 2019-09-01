@@ -9,10 +9,10 @@ const router= express.Router();
 
 router
   .get("/", Post.index)
+  .get("/search/:query", Post.find)
   .post("/", Post.create);
 
 router
-  .get("/:id", Post.read)
   .delete("/:id", Post.delete)
   .put(":id", Post.update);
 
