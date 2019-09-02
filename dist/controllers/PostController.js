@@ -55,7 +55,8 @@ function () {
 
       _Post["default"].find({
         $text: {
-          $search: query
+          $search: query,
+          $language: 'russian'
         }
       }).then(function (post) {
         if (!post) {
@@ -64,6 +65,7 @@ function () {
           });
         }
 
+        console.log(post);
         res.json(post);
       });
     }

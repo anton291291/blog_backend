@@ -33,7 +33,8 @@ class PostController {
 
     PostModel.find( {
     $text: {
-        $search: query
+        $search: query,
+        $language: 'russian'
     }
     })
     .then((post) => {

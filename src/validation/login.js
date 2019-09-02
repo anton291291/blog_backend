@@ -7,19 +7,19 @@ const validateLoginInput = (data) => {
    data.password = !isEmpty(data.password) ? data.password : '';
 
    if(!Validator.isEmail(data.email)) {
-       errors.email = 'Email is invalid';
+       errors.email = 'Email не корректен';
    }
 
    if(Validator.isEmpty(data.email)) {
-       errors.email = 'Email is required';
+       errors.email = 'Введите Email';
    }
 
    if(!Validator.isLength(data.password, {min: 6, max: 30})) {
-       errors.password = 'Password must have 6 chars';
+       errors.password = 'Пароль должен содержать минимум 6 символов';
    }
 
    if(Validator.isEmpty(data.password)) {
-       errors.password = 'Password is required';
+       errors.password = 'Введите пароль';
    }
 
    return {
