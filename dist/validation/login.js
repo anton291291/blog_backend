@@ -17,22 +17,22 @@ var validateLoginInput = function validateLoginInput(data) {
   data.password = !(0, _isEmpty["default"])(data.password) ? data.password : '';
 
   if (!_validator["default"].isEmail(data.email)) {
-    errors.email = 'Email is invalid';
+    errors.email = 'Email не корректен';
   }
 
   if (_validator["default"].isEmpty(data.email)) {
-    errors.email = 'Email is required';
+    errors.email = 'Введите Email';
   }
 
   if (!_validator["default"].isLength(data.password, {
     min: 6,
     max: 30
   })) {
-    errors.password = 'Password must have 6 chars';
+    errors.password = 'Пароль должен содержать минимум 6 символов';
   }
 
   if (_validator["default"].isEmpty(data.password)) {
-    errors.password = 'Password is required';
+    errors.password = 'Введите пароль';
   }
 
   return {
