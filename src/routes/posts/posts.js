@@ -14,6 +14,6 @@ router
 
 router
   .delete("/:id", Post.delete)
-  .put(":id", Post.update);
+  .put("/:id", Post.update);
 
   export default router;
